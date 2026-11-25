@@ -46,10 +46,29 @@ h1{font-size:28px;margin:6px 0 2px;letter-spacing:-.5px}
 #homeMsg{color:#E0607E;font-size:14px;text-align:center;min-height:4px}
 #sent{color:var(--sub);font-size:13px;text-align:center;margin-top:10px}
 .empty{text-align:center;color:var(--sub)}
+/* 대전 */
+.arbox{background:#fff;border-radius:22px;padding:6px 14px 14px;box-shadow:0 3px 14px rgba(90,74,106,.08);margin-bottom:12px;text-align:center}
+.arbox h3{text-align:left;margin:10px 0 6px}
+#arParty{display:flex;justify-content:center;gap:10px}.arp{display:flex;flex-direction:column;align-items:center;font-size:12px}
+.arjoin{display:flex;gap:8px;align-items:stretch;margin-top:12px}.arjoin input{flex:1;min-width:0;border:2px solid var(--line);border-radius:18px;font:22px 'Jua',sans-serif;text-align:center;letter-spacing:6px;padding:0 10px}
+.arjoin .big{margin:0;width:auto;padding:14px 18px}
+.roomno{display:block;font-size:56px;letter-spacing:10px;color:#E0607E;margin:-6px 0 2px}
+.dots::after{content:'';animation:dots 1.4s steps(4) infinite}@keyframes dots{0%{content:''}25%{content:'.'}50%{content:'..'}75%{content:'...'}}
+#arMsg{text-align:center;min-height:20px;font-size:14px;color:var(--sub)}#arMsg.bad{color:#E0607E}
+.ovl{position:fixed;inset:0;background:rgba(59,51,85,.35);display:none;align-items:center;justify-content:center;z-index:20;padding:20px}.ovl.on{display:flex}
+.ovl .box{background:#fff;border-radius:28px;padding:22px 18px;text-align:center;width:100%;max-width:380px;animation:popin .3s}
+#arTitle{font-size:30px;margin:0}#arArt{display:flex;justify-content:center;gap:4px;margin:10px 0}#arText{font-size:17px;line-height:1.6}#arText small{color:var(--sub)}
+#arAgainMsg{font-size:13px;color:var(--sub);min-height:18px;margin-top:6px}
+.ovl .big{margin-top:8px;padding:13px;font-size:18px}
+body.pvp #auto,body.pvp #acts{display:none!important}
+body.pvp #battle .under{padding-bottom:calc(14px + env(safe-area-inset-bottom))}
+.unit.rival .hud{background:rgba(255,236,242,.92);box-shadow:0 0 0 2px #FF9DB8}
+.unit.foe .gbad.unitg{left:auto;right:-16%}
+@media (orientation:landscape){.ovl .box{max-width:560px;padding:12px 16px}#arArt .pbox{width:56px!important;height:56px!important}}
 /* 장비·상점 */
 .wallet{display:flex;gap:6px}
-.menu2{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:0 0 12px}
-.mbtn{background:#fff;border-radius:20px;padding:12px 8px;font-size:18px;box-shadow:0 4px 0 var(--line);display:flex;align-items:center;justify-content:center;gap:8px}.mbtn span{font-size:26px}
+.menu2{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin:0 0 12px}
+.mbtn{background:#fff;border-radius:20px;padding:12px 4px;font-size:17px;box-shadow:0 4px 0 var(--line);display:flex;align-items:center;justify-content:center;gap:8px}.mbtn span{font-size:26px}
 .ttl{font-size:20px}
 .ptabs{display:flex;gap:8px;overflow-x:auto;padding:2px 2px 8px;margin-bottom:6px}
 .ptab{background:#fff;border-radius:16px;padding:4px 10px 6px;display:flex;flex-direction:column;align-items:center;font-size:13px;box-shadow:0 3px 0 var(--line);border:3px solid transparent;flex:none}
@@ -199,7 +218,7 @@ img{display:block}
 
 <section class="screen" id="home">
   <div class="top"><span class="pill">🗺️ 미니 펫 모험</span><span class="wallet"><span class="pill">🪙 <span id="coins">0</span></span><span class="pill">⭐ <span id="stars">0</span></span></span></div>
-  <div class="menu2"><button class="mbtn" id="toGear"><span>🎒</span>장비</button><button class="mbtn" id="toShop"><span>🛒</span>상점</button></div>
+  <div class="menu2"><button class="mbtn" id="toGear"><span>🎒</span>장비</button><button class="mbtn" id="toShop"><span>🛒</span>상점</button><button class="mbtn" id="toArena"><span>⚔️</span>대전</button></div>
   <h1>함께 갈 아이</h1>
   <p class="lead">PC에서 키우는 아이들이에요. 눌러서 최대 3마리를 골라요.</p>
   <div id="homeMsg"></div>
@@ -219,6 +238,22 @@ img{display:block}
   <div class="top"><button class="pill" id="shopBack">← 파티</button><b class="ttl">🛒 상점</b><button class="pill" id="shopGear">🎒 장비</button></div>
   <div class="stabs"><button class="stab on" data-tab="pc">PC 상점 🪙</button><button class="stab" data-tab="adv">모험 상점 ⭐</button><span class="pill" id="shopWallet"></span></div>
   <div id="shopBody"></div>
+</section>
+
+<section class="screen" id="arena">
+  <div class="top"><button class="pill" id="arenaBack">← 파티</button><b class="ttl">⚔️ 대전</b><span class="pill" id="arRec"></span></div>
+  <p class="lead">친구와 방을 만들어 자동 대전을 해요. 이기면 🪙150 · ⭐10, 져도 🪙100 · ⭐4!</p>
+  <div class="arbox"><h3>나갈 아이들 <small>파티 화면에서 바꿔요</small></h3><div id="arParty"></div></div>
+  <div id="arMenu">
+    <button class="big" id="arMake">🏠 방 만들기</button>
+    <div class="arjoin"><input id="arCode" inputmode="numeric" maxlength="4" placeholder="방 번호 4자리"><button class="big" id="arJoin">들어가기</button></div>
+  </div>
+  <div id="arWait" class="arbox" style="display:none">
+    <p>방 번호</p><b id="arRoom" class="roomno"></b>
+    <p>친구에게 이 번호를 알려 주세요<br><span class="dots">상대를 기다리는 중</span></p>
+    <button class="big ghost" id="arCancel">방 닫기</button>
+  </div>
+  <div id="arMsg"></div>
 </section>
 
 <section class="screen" id="map">
@@ -250,6 +285,11 @@ img{display:block}
   <button class="big" id="resNext">다음 스테이지</button>
   <button class="big ghost" id="resMap">지도로</button>
   <button class="big ghost" id="resHome">파티로</button>
+</div></div>
+<div id="aresult" class="ovl"><div class="box">
+  <h2 id="arTitle"></h2><div id="arArt"></div><div id="arText"></div>
+  <button class="big" id="arAgain">다시 하기</button><div id="arAgainMsg"></div>
+  <button class="big ghost" id="arExit">나가기</button>
 </div></div>
 <div id="toast"></div>
 
@@ -884,8 +924,9 @@ function gearList(p) {
   for (const id of (SAVE.adv.eq[petKey(p)] || [])) if (id && advLv(id) >= 0) out.push([id, advLv(id)]);
   return out;
 }
-function gearBadges(p, where) {
-  const l = gearList(p); if (!l.length) return '';
+function gearBadges(p, where) { return badgeHtml(gearList(p), where); }
+function badgeHtml(l, where) {
+  if (!l || !l.length) return '';
   return `<div class="gbad ${where}">${l.map(([id, lv], k) => `<span class="gb${lv >= 6 ? ' t3' : lv >= 3 ? ' t2' : ''}" style="animation-delay:${-k * .35}s">${ICON[id]}</span>`).join('')}</div>`;
 }
 </script>
@@ -911,7 +952,9 @@ function parseServer(s) {
   return m ? m[0] : '';
 }
 // 앱(PWA)으로 열면 서버에 직접 요청
-const GET_API = { syncPull: (id, key) => ({ a: 'pull', id, key }), rpgCoin: (id, key, n, nonce) => ({ a: 'rpgcoin', id, key, n, nonce }), rpgOrder: (id, key, o, nonce) => ({ a: 'rpgorder', id, key, o, nonce }) };
+const GET_API = { syncPull: (id, key) => ({ a: 'pull', id, key }), rpgCoin: (id, key, n, nonce) => ({ a: 'rpgcoin', id, key, n, nonce }), rpgOrder: (id, key, o, nonce) => ({ a: 'rpgorder', id, key, o, nonce }),
+  arenaCreate: team => ({ a: 'acreate', team }), arenaJoin: (room, team) => ({ a: 'ajoin', room, team }), arenaPoll: room => ({ a: 'apoll', room }),
+  arenaAgain: (room, role, team, round) => ({ a: 'aagain', room, role, team, round }), arenaLeave: room => ({ a: 'aleave', room }) };
 async function callHttp(fn, args) {
   if (!SERVER) throw 'offline';
   let r;
@@ -935,7 +978,7 @@ function load() { try { const s = JSON.parse(localStorage.getItem(SAVE_KEY)); if
 function load2() { SAVE.adv = SAVE.adv || { own: {}, eq: {} }; SAVE.adv.own = SAVE.adv.own || {}; SAVE.adv.eq = SAVE.adv.eq || {}; SAVE.orders = SAVE.orders || []; SAVE.star = SAVE.star || 0; }
 function store(local) { SAVE.t = Date.now(); try { localStorage.setItem(SAVE_KEY, JSON.stringify(SAVE)); } catch (e) {} if (!local) saveSoon(); }
 // 진행 기록은 서버에도 둠 (앱·브라우저·다른 폰에서 이어 하기). 이 폰에서 보내는 중인 코인·주문은 빼고
-const SHARED = ['clear', 'exp', 'earned', 'snacks', 'star', 'adv', 'auto'];
+const SHARED = ['clear', 'exp', 'earned', 'snacks', 'star', 'adv', 'auto', 'pvp'];
 let saveTimer = 0, saveBusy = false;
 function saveSoon() { clearTimeout(saveTimer); saveTimer = setTimeout(saveNow, 2500); }
 async function saveNow() {
@@ -1152,7 +1195,7 @@ addEventListener('resize', sizeStage);
 
 function makeUnit(u, side, slot) {
   const el = document.createElement('div');
-  el.className = 'unit ' + side + (u.boss ? ' boss' : '');
+  el.className = 'unit ' + side + (u.boss ? ' boss' : '') + (u.rival ? ' rival' : '');
   el.style.left = (side === 'pet' ? slot.x : 100 - slot.x) + '%';
   const dep = Math.min(1, slot.y / 10); // 0 앞줄 ~ 1 뒷줄 (길 안쪽)
   el.style.bottom = `calc(var(--floor) + var(--depth) * ${dep.toFixed(2)})`;
@@ -1162,7 +1205,7 @@ function makeUnit(u, side, slot) {
   el.style.setProperty('--k', k);
   const img = side === 'pet' ? sprite(u.spc, 'right') : sprite(u.kind, 'right');
   el.innerHTML = `<div class="hud"><div class="nm">${u.name} <small>Lv.${side === 'pet' ? lvOf(u.p) : u.lv}</small></div><div class="bar"><i></i></div>${side === 'pet' ? '<div class="sp"><i></i></div>' : ''}<div class="tags"></div></div>
-    <div class="body"><div class="sprite"></div><canvas></canvas>${side === 'foe' ? '<i class="mad">💢</i>' : gearBadges(u.p, 'unitg')}</div><div class="fx"></div>`;
+    <div class="body"><div class="sprite"></div><canvas></canvas>${side === 'foe' ? (u.rival ? badgeHtml(u.gear, 'unitg') : '<i class="mad">💢</i>') : gearBadges(u.p, 'unitg')}</div><div class="fx"></div>`;
   el.onclick = () => side === 'foe' ? (B.pickFoe && B.pickFoe(B.foes.indexOf(u))) : (B.pickPet && B.pickPet(B.pets.indexOf(u)));
   u.el = el;
   $('#units').appendChild(el);
@@ -1178,7 +1221,7 @@ function draw() {
     const sp = u.el.querySelector('.sp i'); if (sp) sp.style.width = u.sp + '%';
     u.el.querySelector('.tags').textContent = (u.guard > 0 ? '🛡️' : '') + (u.cheer > 0 ? '📣' : '') + (u.stun ? '💫' : '');
   }
-  $('#wave').textContent = `${REGION + 1}-${B.s + 1} · ${B.wave + 1}/${B.waves.length}번째 무리`;
+  $('#wave').textContent = B.arena ? `⚔️ 대전 · 방 ${B.arena.room}${B.arena.round ? ` · ${B.arena.round + 1}판` : ''}` : `${REGION + 1}-${B.s + 1} · ${B.wave + 1}/${B.waves.length}번째 무리`;
   $('#snackN').textContent = B.snacks;
 }
 const elOf = (side, i) => (side === 'pet' ? B.pets : B.foes)[i]?.el;
@@ -1291,7 +1334,7 @@ async function startStage(r, s) {
   const L = document.querySelectorAll('#stage .layer');
   L[0].style.backgroundImage = L[2].style.backgroundImage = `url(${tile})`;
   show('battle');
-  SCROLL = 0; sizeStage(); setAuto(!!SAVE.auto);
+  SCROLL = 0; sizeStage(); setAuto(!!SAVE.auto); document.body.classList.remove('pvp'); $('#run').textContent = '🏃 도망';
   log(`<b>${R.name}</b>(으)로 출발!`);
   pets.forEach((u, i) => makeUnit(u, 'pet', SLOTS[i]));
   draw();
@@ -1589,5 +1632,268 @@ if (!IN_GAS) {
 wire();
 installUI();
 boot();
+</script>
+<script>// ───────── 대전 (다른 사람과 자동 대전) ─────────
+// 방장(A)·손님(B)의 파티와 서버가 정한 씨앗으로 두 폰이 똑같은 전투를 계산(arenaSim)하고, 그 기록을 전투 화면에서 보여 줌.
+const PVP_REWARD = { win: [150, 10], lose: [100, 4] }; // [코인, 별조각]
+let AR = null; // { room, role, round, my, opp, seed, timer }
+
+// ── 같은 씨앗이면 같은 결과가 나오는 난수 ──
+function mulberry(a) { return () => { a |= 0; a = a + 0x6D2B79F5 | 0; let t = Math.imul(a ^ a >>> 15, 1 | a); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
+
+// 내 파티 → 보낼 글
+function myTeam() {
+  const list = PARTY.map(i => PETS[i]).filter(canGo).slice(0, 3).map(p => {
+    const s = statsOf(p), a = advOf(p);
+    return { sp: p.species, st: p.stage, lv: lvOf(p), name: NAMES[p.species] || p.species, hp: s.hp, atk: s.atk, def: s.def, spd: s.spd,
+      crit: +a.crit.toFixed(3), spg: +a.sp.toFixed(3), regen: +a.regen.toFixed(3), skill: SKILL[p.species] || ['몸통 박치기', 'strike'], gear: gearList(p) };
+  });
+  return { o: ID, list };
+}
+
+// ── 전투 계산 (두 폰에서 똑같이) ──
+function arenaSim(teamA, teamB, seed) {
+  const R = mulberry(seed), rr = (a, b) => a + R() * (b - a);
+  const mk = (t, side) => t.list.map((u, i) => ({ side, i, sp: u.sp, st: u.st, name: u.name, max: u.hp, hp: u.hp, atk: u.atk, def: u.def, spd: u.spd,
+    adv: { crit: u.crit || 0, sp: u.spg || 0, regen: u.regen || 0 }, skill: u.skill || ['몸통 박치기', 'strike'], g: 0, guard: 0, cheer: 0, taunt: 0, stun: false }));
+  const T = { A: mk(teamA, 'A'), B: mk(teamB, 'B') }, snacks = { A: 2, B: 2 }, ev = [];
+  const live = s => T[s].filter(u => u.hp > 0), other = s => s === 'A' ? 'B' : 'A';
+  const gain = (u, n) => { u.g = Math.min(100, u.g + Math.round(n * (1 + u.adv.sp))); };
+  const snap = () => ({ A: T.A.map(u => [u.hp, u.g, u.guard, u.cheer, u.stun ? 1 : 0]), B: T.B.map(u => [u.hp, u.g, u.guard, u.cheer, u.stun ? 1 : 0]) });
+  const hit = (a, d, mult) => {
+    let dmg = a.atk * (a.cheer > 0 ? 1.4 : 1) * rr(.9, 1.1) * 60 / (50 + d.def) * mult;
+    const crit = R() < .12 + a.adv.crit; if (crit) dmg *= 1.6;
+    if (d.guard > 0) dmg *= .5;
+    dmg = Math.max(1, Math.round(dmg)); d.hp = Math.max(0, d.hp - dmg);
+    return { dmg, crit };
+  };
+  const id = u => [u.side, u.i];
+  let round = 0;
+  for (; round < 30 && live('A').length && live('B').length; round++) {
+    const order = [...live('A'), ...live('B')].map(u => [u, u.spd * rr(.9, 1.1)]).sort((x, y) => y[1] - x[1]).map(x => x[0]);
+    for (const u of order) {
+      if (u.hp <= 0 || !live('A').length || !live('B').length) continue;
+      const me = u.side, op = other(me), foes = live(op), mine = live(me);
+      if (u.adv.regen && u.hp < u.max) { const h = Math.max(1, Math.round(u.max * u.adv.regen)); u.hp = Math.min(u.max, u.hp + h); ev.push({ k: 'regen', a: id(u), h, st: snap() }); }
+      if (u.stun) { u.stun = false; ev.push({ k: 'stunned', a: id(u), st: snap() }); continue; }
+      const weak = foes.reduce((x, f) => f.hp < x.hp ? f : x, foes[0]);
+      const low = mine.reduce((x, p) => p.hp / p.max < x.hp / x.max ? p : x, mine[0]), hurt = low.hp / low.max;
+      const [sname, k] = u.skill, myth = u.st === 6, pow = myth ? 1.45 : 1;
+      const useful = k === 'heal' ? hurt < .75 : k === 'guard' ? hurt < .6 : true;
+      if (u.g >= 100 && useful) {
+        u.g = 0;
+        const e = { k: 'skill', a: id(u), name: sname, sk: k, hits: [], heals: [] };
+        if (k === 'strike' || k === 'stun' || k === 'drain') {
+          const t = k === 'stun' ? foes.reduce((x, f) => f.atk > x.atk ? f : x, foes[0]) : weak;
+          const r = hit(u, t, (k === 'strike' ? 2.3 : k === 'stun' ? 1.4 : 1.7) * pow);
+          e.hits.push([...id(t), r.dmg]);
+          if ((k === 'stun' || (myth && k === 'strike')) && t.hp > 0) { t.stun = true; e.stun = id(t); }
+          if (k === 'drain') { const h = Math.round(r.dmg * (myth ? 1 : .7)); u.hp = Math.min(u.max, u.hp + h); e.heals.push([...id(u), h]); }
+        } else if (k === 'sweep') {
+          for (const f of foes) { const r = hit(u, f, 1.15 * pow); e.hits.push([...id(f), r.dmg]); }
+        } else if (k === 'heal') {
+          for (const p of T[me]) { if (p.hp <= 0 && !(myth && u.sp === 'bonghwang')) continue; const h = Math.round(p.max * .3 * pow + u.atk * .5); p.hp = Math.min(p.max, p.hp + h); e.heals.push([...id(p), h]); }
+        } else if (k === 'guard') { for (const p of T[me]) p.guard = myth ? 3 : 2; u.taunt = 2; }
+        else if (k === 'cheer') { for (const p of T[me]) p.cheer = myth ? 4 : 3; }
+        for (const [s, i, d] of e.hits) if (d > 0 && T[s][i].hp > 0) gain(T[s][i], 10);
+        e.st = snap(); ev.push(e); continue;
+      }
+      if (snacks[me] > 0 && hurt < .3) {
+        snacks[me]--; const h = Math.round(low.max * .45); low.hp = Math.min(low.max, low.hp + h);
+        ev.push({ k: 'snack', a: id(u), t: id(low), h, st: snap() }); continue;
+      }
+      const taunter = foes.find(f => f.taunt > 0), t = taunter || weak;
+      if (taunter) taunter.taunt--;
+      const r = hit(u, t, 1); gain(u, 30); if (t.hp > 0) gain(t, 15);
+      ev.push({ k: 'atk', a: id(u), t: id(t), dmg: r.dmg, crit: r.crit, st: snap() });
+    }
+    for (const u of [...T.A, ...T.B]) { if (u.guard > 0) u.guard--; if (u.cheer > 0) u.cheer--; }
+  }
+  let win = !live('B').length ? 'A' : !live('A').length ? 'B' : null;
+  if (!win) { // 30라운드가 지나도 안 끝나면 남은 체력 비율로
+    const ratio = s => T[s].reduce((a, u) => a + u.hp / u.max, 0) / T[s].length;
+    win = ratio('A') >= ratio('B') ? 'A' : 'B';
+  }
+  ev.push({ k: 'end', win, timeout: round >= 30 });
+  return ev;
+}
+
+// ── 화면: 대전 탭 ──
+function renderArena() {
+  const sel = PARTY.map(i => PETS[i]).filter(canGo);
+  $('#arParty').innerHTML = sel.length ? sel.map(p => `<div class="arp">${petArt(p.species, 70)}<small>${NAMES[p.species]} Lv.${lvOf(p)}</small></div>`).join('') : '<p class="empty">파티 화면에서 함께 갈 아이를 골라 주세요</p>';
+  const rec = SAVE.pvp || { w: 0, l: 0 };
+  $('#arRec').textContent = `전적 ${rec.w}승 ${rec.l}패`;
+  $('#arMake').disabled = $('#arJoin').disabled = !sel.length || !!AR;
+  $('#arWait').style.display = AR && !AR.started ? '' : 'none';
+  $('#arMenu').style.display = AR && !AR.started ? 'none' : '';
+}
+function arMsg(t, bad) { const m = $('#arMsg'); m.textContent = t || ''; m.classList.toggle('bad', !!bad); }
+const AR_ERR = { noroom: '그런 방이 없어요. 번호를 다시 확인해 주세요', busy: '이미 대전 중인 방이에요', self: '내가 만든 방에는 들어갈 수 없어요', team: '파티를 다시 골라 주세요', full: '방이 꽉 찼어요. 잠시 뒤 다시 해 주세요', offline: '서버에 연결할 수 없어요' };
+async function arenaCreate() {
+  arMsg('방 만드는 중…');
+  try {
+    const team = myTeam(), r = await call('arenaCreate', JSON.stringify(team));
+    if (!r.ok) throw r.err;
+    AR = { room: r.room, role: 'host', round: 0, my: team };
+    $('#arRoom').textContent = r.room; arMsg(''); renderArena();
+    arenaWaitGuest();
+  } catch (e) { arMsg(AR_ERR[e] || '방을 만들지 못했어요 (' + e + ')', true); }
+}
+function arenaWaitGuest() {
+  clearTimeout(AR && AR.timer);
+  if (!AR || AR.started) return;
+  AR.timer = setTimeout(async () => {
+    if (!AR) return;
+    try {
+      const r = await call('arenaPoll', AR.room);
+      if (!r.ok) { arenaReset(r.err === 'noroom' ? '방이 사라졌어요. 다시 만들어 주세요' : ''); return; }
+      if (r.guest) { arenaStart(JSON.parse(r.guest), r.seed, r.round, r.startsIn); return; }
+    } catch (e) {}
+    arenaWaitGuest();
+  }, 1500);
+}
+async function arenaJoin() {
+  const room = $('#arCode').value.replace(/\D/g, '');
+  if (room.length !== 4) return arMsg('방 번호 4자리를 넣어 주세요', true);
+  arMsg('들어가는 중…');
+  try {
+    const team = myTeam(), r = await call('arenaJoin', room, JSON.stringify(team));
+    if (!r.ok) throw r.err;
+    AR = { room, role: 'guest', round: 0, my: team };
+    arMsg('');
+    arenaStart(JSON.parse(r.host), r.seed, r.round, r.startsIn);
+  } catch (e) { arMsg(AR_ERR[e] || '들어가지 못했어요 (' + e + ')', true); }
+}
+async function arenaLeave(msg) {
+  if (AR) { clearTimeout(AR.timer); const room = AR.room; AR = null; try { await call('arenaLeave', room); } catch (e) {} }
+  arenaReset(msg);
+}
+function arenaReset(msg) {
+  if (AR) clearTimeout(AR.timer);
+  AR = null; arMsg(msg || '', !!msg); renderArena();
+}
+
+// ── 대전 시작: 같은 시각에 두 폰이 시작 ──
+async function arenaStart(opp, seed, round, startsIn) {
+  AR.opp = opp; AR.seed = seed; AR.round = round; AR.started = true; clearTimeout(AR.timer);
+  const teamA = AR.role === 'host' ? AR.my : opp, teamB = AR.role === 'host' ? opp : AR.my;
+  const ev = arenaSim(teamA, teamB, seed);
+  const mine = AR.role === 'host' ? 'A' : 'B';
+  $('#aresult').classList.remove('on');
+  await arenaView(opp, seed, mine);
+  log(`<b>상대가 들어왔어요!</b> 곧 대전이 시작돼요`);
+  const wait = Math.max(0, (startsIn || 0) - 1800);
+  for (let s = Math.ceil(wait / 1000); s > 0; s--) { log(`⚔️ 대전 시작까지 <b>${s}</b>`); await sleep(1000); if (!AR || B.arena !== AR) return; }
+  await sleep(wait % 1000);
+  await arenaPlay(ev, mine);
+}
+// 전투 화면 세우기
+async function arenaView(opp, seed, mine) {
+  const r = seed % SCENE.length, S = SCENE[r];
+  const pets = AR.my.list.map((u, i) => ({ p: PETS[PARTY.filter(j => canGo(PETS[j]))[i]], spc: u.sp, stage: u.st, name: u.name, max: u.hp, hp: u.hp, sp: 0, guard: 0, cheer: 0 }));
+  const foes = opp.list.map(u => ({ kind: u.sp, stage: u.st, name: u.name, lv: u.lv, max: u.hp, hp: u.hp, sp: 0, guard: 0, cheer: 0, gear: u.gear || [], rival: true }));
+  document.body.style.setProperty('--bg1', REGIONS[r].bg[0]); document.body.style.setProperty('--bg2', REGIONS[r].bg[1]);
+  $('#stage').classList.toggle('dark', S.dark);
+  $('#units').innerHTML = '';
+  B = { r, s: 0, pets, foes, waves: [foes], wave: 0, snacks: 0, turn: 0, over: false, arena: AR };
+  const tile = await bgTile(r), L = document.querySelectorAll('#stage .layer');
+  L[0].style.backgroundImage = L[2].style.backgroundImage = `url(${tile})`;
+  show('battle'); document.body.classList.add('pvp'); $('#run').textContent = '🚪 나가기';
+  SCROLL = 0; sizeStage();
+  pets.forEach((u, i) => makeUnit(u, 'pet', SLOTS[i]));
+  foes.forEach((u, i) => makeUnit(u, 'foe', FOE_SLOTS[foes.length][i]));
+  draw();
+  pets.forEach((u, i) => u.rig.enter(-innerWidth * .6, 1100 + i * 120));
+  foes.forEach((u, i) => u.rig.enter(innerWidth * .6, 1100 + i * 120));
+  await sleep(1300);
+}
+// 계산해 둔 기록을 차례로 보여 주기
+async function arenaPlay(ev, mine) {
+  const ar = AR, unit = ([s, i]) => (s === mine ? B.pets : B.foes)[i];
+  const apply = st => {
+    for (const s of ['A', 'B']) st[s].forEach((v, i) => { const u = unit([s, i]); if (!u) return; [u.hp, u.sp, u.guard, u.cheer] = v; u.stun = !!v[4]; });
+    draw();
+  };
+  for (const e of ev) {
+    if (!AR || AR !== ar || B.arena !== ar) return;
+    if (e.k === 'end') return arenaFinish(e.win === mine, e.timeout);
+    const a = unit(e.a);
+    const who = (e.a[0] === mine ? '' : '상대 ') + a.name;
+    a.el.classList.add('now');
+    if (e.k === 'regen') { floatNum(a.el, '+' + e.h, 'heal'); apply(e.st); a.el.classList.remove('now'); await sleep(300); continue; }
+    if (e.k === 'stunned') { log(`${who}은(는) 어지러워서 쉬어요 💫`); apply(e.st); await sleep(650); }
+    else if (e.k === 'snack') { const t = unit(e.t); log(`${who}이(가) ${t.name}에게 간식을 줬어요 🍓`); anim(a.el, 'pulse'); await sleep(300); apply(e.st); floatNum(t.el, '+' + e.h, 'heal'); anim(t.el, 'glow', 700); await sleep(700); }
+    else if (e.k === 'atk') {
+      const t = unit(e.t);
+      await lunge(a.el, t.el, a.spc || a.kind);
+      apply(e.st); anim(t.el, e.crit ? 'crit' : 'shake'); floatNum(t.el, (e.crit ? '크리티컬! ' : '') + '-' + e.dmg, e.crit ? 'crit' : '');
+      log(`${who}의 공격! ${t.name}에게 <b>${e.dmg}</b> 피해${e.st[e.t[0]][e.t[1]][0] <= 0 ? ' · 쓰러뜨렸어요!' : ''}`);
+      await sleep(700);
+    } else if (e.k === 'skill') {
+      floatNum(a.el, e.name, 'skill');
+      await a.rig.cast();
+      $('#flash').textContent = FX[e.sk]; anim($('#flash'), 'pop', 900);
+      const tg = e.hits.map(h => unit(h).el);
+      if (tg.length) await shoot(a.el, tg, FX[e.sk], a.spc || a.kind);
+      apply(e.st);
+      for (const h of e.hits) { const t = unit(h); anim(t.el, 'crit'); floatNum(t.el, '-' + h[2], 'crit'); }
+      for (const h of e.heals) { const t = unit(h); floatNum(t.el, '+' + h[2], 'heal'); anim(t.el, 'glow', 700); }
+      const what = { strike: '큰 피해!', stun: '어지럽게 만들었어요 💫', drain: '체력을 빼앗았어요', sweep: '모두에게 피해!', heal: '모두 체력을 회복해요', guard: '모두 받는 피해가 줄어요', cheer: '모두 힘이 솟아요!' }[e.sk];
+      log(`✨ ${who}의 <b>${e.name}</b>! ${what}`);
+      await sleep(900);
+    }
+    a.el.classList.remove('now');
+  }
+}
+function arenaFinish(win, timeout) {
+  B.over = true;
+  for (const u of (win ? B.pets : B.foes)) if (u.hp > 0) u.rig.mode = 'cheer';
+  const [c, st] = PVP_REWARD[win ? 'win' : 'lose'];
+  SAVE.pvp = SAVE.pvp || { w: 0, l: 0 }; SAVE.pvp[win ? 'w' : 'l']++;
+  SAVE.star += st; SAVE.earned += c;
+  SAVE.pending.push({ n: c, nonce: Date.now().toString(36) + Math.random().toString(36).slice(2, 10) });
+  store(); sendCoins();
+  $('#arTitle').textContent = win ? '🏆 승리!' : '아쉬운 패배…';
+  $('#arArt').innerHTML = (win ? B.pets : B.pets).map(u => `<div class="${win ? 'hop' : 'sad'}">${petArt(u.spc, 72)}</div>`).join('');
+  $('#arText').innerHTML = (timeout ? '시간이 다 돼서 남은 체력으로 판정했어요<br>' : '') + `🪙 코인 <b>+${c}</b> · ⭐ 별조각 <b>+${st}</b><br><small>전적 ${SAVE.pvp.w}승 ${SAVE.pvp.l}패</small>`;
+  $('#arAgain').disabled = false; $('#arAgain').textContent = '다시 하기'; $('#arAgainMsg').textContent = '';
+  setTimeout(() => $('#aresult').classList.add('on'), 1000);
+}
+// 다시 하기: 두 사람이 모두 누르면 같은 방에서 한 판 더
+async function arenaAgain() {
+  if (!AR) return;
+  const ar = AR; ar.my = myTeam(); ar.started = false;
+  $('#arAgain').disabled = true; $('#arAgain').textContent = '상대를 기다리는 중…';
+  const tick = async () => {
+    if (AR !== ar) return;
+    try {
+      const r = await call('arenaAgain', ar.room, ar.role, JSON.stringify(ar.my), ar.round);
+      if (!r.ok) { if (r.err === 'noroom') { $('#arAgainMsg').textContent = '상대가 나갔어요'; $('#arAgain').textContent = '다시 하기'; AR = null; return; } throw r.err; }
+      if (r.ready) { $('#aresult').classList.remove('on'); arenaStart(JSON.parse(ar.role === 'host' ? r.guest : r.host), r.seed, r.round, r.startsIn); return; }
+      $('#arAgainMsg').textContent = r.waiting ? '' : '상대가 다시 하기를 누르면 시작해요';
+    } catch (e) { $('#arAgainMsg').textContent = '연결이 불안해요. 계속 시도 중…'; }
+    ar.timer = setTimeout(tick, 1500);
+  };
+  tick();
+}
+function arenaExit() {
+  $('#aresult').classList.remove('on'); document.body.classList.remove('pvp');
+  if (B) B.over = true;
+  arenaLeave(); show('arena'); renderArena();
+}
+
+// ── 버튼 ──
+$('#toArena').onclick = () => { show('arena'); renderArena(); };
+$('#arenaBack').onclick = () => { if (AR && !AR.started) arenaLeave(); renderHome(); show('home'); };
+$('#arMake').onclick = arenaCreate;
+$('#arJoin').onclick = arenaJoin;
+$('#arCancel').onclick = () => arenaLeave();
+$('#arAgain').onclick = arenaAgain;
+$('#arExit').onclick = arenaExit;
+{
+  const run = $('#run').onclick;
+  $('#run').onclick = () => { if (B && B.arena) { if (confirm('대전에서 나갈까요? (패배로 기록되지 않아요)')) arenaExit(); } else run(); };
+}
 </script>
 </body></html>
